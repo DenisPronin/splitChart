@@ -1,0 +1,32 @@
+{
+  "name": "splitChart",
+  "version": "0.0.0",
+  "description": "split chart on two charts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DenisPronin/splitChart.git"
+  },
+  "keywords": [
+    "chart",
+    "split"
+  ],
+  "author": "DenisPronin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DenisPronin/splitChart/issues"
+  },
+  "homepage": "https://github.com/DenisPronin/splitChart",
+  "dependencies": {
+    "flot": "^0.8.0-alpha",
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",
+    "gulp-jshint": "^1.10.0",
+    "gulp-open": "^0.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "jshint-stylish": "^1.0.1"
+  }
+}
