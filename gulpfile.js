@@ -3,6 +3,11 @@ var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 
+var sass = require('gulp-sass');
+var scsslint = require('gulp-scss-lint');
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+
 var connect = require('gulp-connect');
 var open = require('gulp-open');
 
@@ -11,6 +16,11 @@ var port = 5046;
 var paths = {
     html: {
         src: ['index.html']
+    },
+    scss: {
+        main: 'scss/main.scss',
+        src: ['scss/**/*.scss'],
+        distPath: 'dist'
     },
     js: {
         src: ['js/**/*.js'],
@@ -57,11 +67,36 @@ gulp.task("jsMin", function() {
 
 gulp.task('jsProd', ['js', 'jsMin']);
 
+gulp.task('sass-lint', function() {
+    gulp.src(paths.scss.src)
+        .pipe(scsslint({
+            config: 'scss/sassLint.yaml'
+        }));
+});
+
+gulp.task('sass', function() {
+    return gulp.src(paths.scss.main)
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            errLogToConsole: true
+        }))
+        .pipe(autoprefixer({
+            browsers: ['last 10 version']
+        }))
+        .pipe(rename({
+            basename: 'example'
+        }))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(paths.scss.distPath))
+        .pipe(connect.reload());
+});
+
 gulp.task('watch', function() {
     gulp.watch(paths.html.src, ['html']);
     gulp.watch(paths.js.src, ['js']);
+    gulp.watch(paths.scss.src, ['sass', 'sass-lint']);
 });
 
-gulp.task('default', ['connect', 'js', 'watch', 'open']);
+gulp.task('default', ['connect', 'js', 'sass', 'sass-lint', 'watch', 'open']);
 
-gulp.task('prod', ['connect', 'jsProd', 'open']);
+gulp.task('prod', ['connect', 'jsProd', 'sass', 'open']);
