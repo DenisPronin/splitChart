@@ -36,9 +36,7 @@
         });
 
         $('#undoSplit').click(function() {
-            $('#left-chart').empty();
-            $('#right-chart').empty();
-            $('#chart').show();
+            plot.undoSplit();
         });
 
 

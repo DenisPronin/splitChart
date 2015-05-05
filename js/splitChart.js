@@ -62,12 +62,16 @@
 
                 $placeholder.hide();
 
-                $.plot("#" + mainOptions.splitchart.leftHalfId, [
+                var $leftChart = $("#" + mainOptions.splitchart.leftHalfId);
+                var $rightChart = $("#" + mainOptions.splitchart.rightHalfId);
+                $leftChart.show();
+                $rightChart.show();
+                $.plot($leftChart, [
                     { data: leftHalf[0] },
                     { data: leftHalf[1] }
                 ], _options);
 
-                $.plot("#" + mainOptions.splitchart.rightHalfId, [
+                $.plot($rightChart, [
                     { data: rightHalf[0] },
                     { data: rightHalf[1] }
                 ], _options);
@@ -78,6 +82,13 @@
         var initEvents = function() {
             $placeholder.bind("plothover", onMouseMove);
             $placeholder.bind("plotclick", split);
+        };
+
+        plot.undoSplit = function() {
+            var mainOptions = plot.getOptions();
+            $("#" + mainOptions.splitchart.leftHalfId).empty().hide();
+            $("#" + mainOptions.splitchart.rightHalfId).empty().hide();
+            $placeholder.show();
         };
 
         plot.hooks.processOptions.push(checkSplitEnabled);
