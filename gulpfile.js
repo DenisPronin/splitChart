@@ -25,7 +25,13 @@ var paths = {
     js: {
         src: ['js/**/*.js'],
         distPath: 'dist',
-        distLib: 'dist/splitChart.js'
+        distLib: 'dist/splitChart.js',
+        vendors: [
+            'node_modules/jquery/dist/jquery.min.js',
+            'node_modules/flot/jquery.flot.js',
+            'node_modules/flot/jquery.flot.crosshair.js'
+        ],
+        distVendors: 'dist/vendors'
     }
 };
 
@@ -50,11 +56,16 @@ gulp.task('html', function() {
         .pipe(connect.reload());
 });
 
+gulp.task('jsVendors', function() {
+    return gulp.src(paths.js.vendors)
+        .pipe(gulp.dest(paths.js.distVendors));
+});
+
 gulp.task('js', function() {
     return gulp.src(paths.js.src)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(gulp.dest(paths.js.distPath))
+        .pipe(gulp.dest(paths.js.distPath + 'vendors'))
         .pipe(connect.reload());
 });
 
@@ -97,6 +108,6 @@ gulp.task('watch', function() {
     gulp.watch(paths.scss.src, ['sass', 'sass-lint']);
 });
 
-gulp.task('default', ['connect', 'js', 'sass', 'sass-lint', 'watch', 'open']);
+gulp.task('default', ['connect', 'jsVendors', 'js', 'sass', 'sass-lint', 'watch', 'open']);
 
-gulp.task('prod', ['connect', 'jsProd', 'sass', 'open']);
+gulp.task('prod', ['connect', 'jsVendors', 'jsProd', 'sass', 'open']);
