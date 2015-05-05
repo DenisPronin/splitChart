@@ -49,7 +49,7 @@
                 var leftHalf = [];
                 var rightHalf = [];
                 for (var j = 0; j < data.length; j++) {
-                    var oldSeries = data[j].data.splice(0);
+                    var oldSeries = data[j].data.slice();
                     var firstPart = oldSeries.splice(0, splitIndex);
                     leftHalf.push(firstPart);
                     rightHalf.push(oldSeries);
