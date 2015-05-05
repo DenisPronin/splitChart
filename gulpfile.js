@@ -65,7 +65,7 @@ gulp.task('js', function() {
     return gulp.src(paths.js.src)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(gulp.dest(paths.js.distPath + 'vendors'))
+        .pipe(gulp.dest(paths.js.distPath))
         .pipe(connect.reload());
 });
 
