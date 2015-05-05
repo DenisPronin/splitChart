@@ -4,6 +4,7 @@
     (function ($) {
         var options = {
             splitChart: {
+
             }
         };
 
@@ -38,14 +39,28 @@
             var split = function() {
                 if(splitIndex) {
                     var data = plot.getData();
-                    var newData = [[], []];
+                    var leftHalf = [];
+                    var rightHalf = [];
                     for (var j = 0; j < data.length; j++) {
                         var oldSeries = data[j].data.splice(0);
                         var firstPart = oldSeries.splice(0, splitIndex);
-                        newData[0].push(firstPart);
-                        newData[1].push(oldSeries);
+                        leftHalf.push(firstPart);
+                        rightHalf.push(oldSeries);
                     }
-                    console.log(newData);
+
+                    var options = $.extend({}, plot.getOptions());
+                    delete options.crosshair;
+
+                    $.plot("#chart", [
+                        { data: leftHalf[0] },
+                        { data: leftHalf[1] }
+                    ], options);
+
+                    $.plot("#second-chart", [
+                        { data: rightHalf[0] },
+                        { data: rightHalf[1] }
+                    ], options);
+
                 }
             };
 
