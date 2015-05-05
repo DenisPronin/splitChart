@@ -21,6 +21,10 @@
             crosshair: {
                 mode: "x"
             },
+            splitchart: {
+                leftHalfId: 'left-chart',
+                rightHalfId: 'right-chart'
+            },
             grid: {
                 hoverable: true,
                 clickable: true
