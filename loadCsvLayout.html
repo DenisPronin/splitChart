@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>LoadCsv</title>
+    <!--<link rel="stylesheet" href="node_modules/dropzone/dist/min/basic.min.css"/>-->
+    <link rel="stylesheet" href="node_modules/dropzone/dist/dropzone.css"/>
+    <link rel="stylesheet" href="dist/example.css"/>
+</head>
+<body>
+    <div class="content">
+
+
+        <div class="upload-form">
+            <form id="csv-dropzone" action="/upload" class="dropzone">
+                <div class="dropzone-previews"></div>
+                <div class="dz-default dz-message" data-dz-message="">
+                    <div><img src="img/upload.png"/></div>
+                    <span>Add CSV from Computer</span>
+                </div>
+
+                <div class="fallback"> <!-- this is the fallback if JS isn't working -->
+                    <input name="file" type="file" multiple />
+
+                </div>
+
+            </form>
+            <button type="button" id="submitCsv" class="sp-button default-btn">Upload the file</button>
+        </div>
+
+
+
+
+    </div>
+
+    <!--Vendors-->
+    <script src="dist/vendors/jquery.js"></script>
+    <script src="node_modules/dropzone/dist/dropzone.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            Dropzone.options.csvDropzone = {
+                uploadMultiple: false,
+
+                init: function() {
+                    var myDropzone = this;
+                    $("#submit-all").click(function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
+                    });
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
