@@ -35,8 +35,18 @@
             }
         });
 
+        $('#left-chart,#right-chart').hide();
         $('#undoSplit').click(function() {
             plot.undoSplit();
+        });
+
+        $('#toImage').click(function() {
+            html2canvas($('.demo-container')[0], {
+                onrendered: function(canvas) {
+                    var image = canvas.toDataURL();
+                    $('#image-container').empty().append('<img src="' + image + '">');
+                }
+            });
         });
 
 

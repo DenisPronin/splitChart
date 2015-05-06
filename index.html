@@ -14,11 +14,14 @@
         </div>
         <div class="chart-controls">
             <button type="button" class="sp-button default-btn" id="undoSplit">Undo split</button>
+            <button type="button" class="sp-button default-btn" id="toImage">To Image</button>
         </div>
+        <div id="image-container"></div>
     </div>
 
     <!--Vendors-->
-    <script src="dist/vendors/jquery.min.js"></script>
+    <script src="node_modules/html2canvas/dist/html2canvas.js"></script>
+    <script src="dist/vendors/jquery.js"></script>
     <script src="dist/vendors/jquery.flot.js"></script>
     <script src="dist/vendors/jquery.flot.crosshair.js"></script>
     <!--Our script-->

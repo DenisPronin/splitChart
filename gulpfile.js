@@ -27,7 +27,7 @@ var paths = {
         distPath: 'dist',
         distLib: 'dist/splitChart.js',
         vendors: [
-            'node_modules/jquery/dist/jquery.min.js',
+            'node_modules/jquery/dist/jquery.js',
             'node_modules/flot/jquery.flot.js',
             'node_modules/flot/jquery.flot.crosshair.js'
         ],

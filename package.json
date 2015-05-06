@@ -18,6 +18,7 @@
   "homepage": "https://github.com/DenisPronin/splitChart",
   "dependencies": {
     "flot": "^0.8.0-alpha",
+    "html2canvas": "^0.5.0-alpha2",
     "jquery": "^2.1.4"
   },
   "devDependencies": {
