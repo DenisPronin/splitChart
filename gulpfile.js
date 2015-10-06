@@ -29,7 +29,8 @@ var paths = {
         vendors: [
             'node_modules/jquery/dist/jquery.js',
             'node_modules/flot/jquery.flot.js',
-            'node_modules/flot/jquery.flot.crosshair.js'
+            'node_modules/flot/jquery.flot.crosshair.js',
+            'node_modules/html2canvas/dist/html2canvas.js'
         ],
         distVendors: 'dist/vendors'
     }
